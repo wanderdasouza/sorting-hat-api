@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  mysql:
+    image: postgres:13.0-alpine
+    restart: always
+    environment:
+        POSTGRES_USER: "root"
+        POSTGRES_PASSWORD: "root"
+        POSTGRES_DB: "test"
+    ports:
+      - "3306:5432"

@@ -4,6 +4,7 @@ import { SystemModule } from './system/system.module';
 import { ModuleModule } from './module/module.module';
 import { ServiceModule } from './service/service.module';
 import { DatabaseModule } from './database/database.module';
+import { NonFuncReqModule } from './non-func-req/non-func-req.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { DatabaseModule } from './database/database.module';
     SystemModule,
     ModuleModule,
     ServiceModule,
-    DatabaseModule],
+    DatabaseModule,
+    NonFuncReqModule],
 })
 export class AppModule {}

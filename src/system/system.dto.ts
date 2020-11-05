@@ -1,3 +1,5 @@
 export class SystemDto {
-    description: string;
+  name: string;
+  description: string;
+  reqIds: number[];
 }

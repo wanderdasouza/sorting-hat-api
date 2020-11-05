@@ -3,12 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { SystemController } from './system.controller';
 import { System } from '../entities/system.entity';
 import { SystemService } from './system.service';
-import { NotFuncReq } from 'src/entities/notFuncReq.entity';
+import { NonFuncReq } from 'src/entities/nonFuncReq.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([System, NotFuncReq])],
+  imports: [TypeOrmModule.forFeature([System, NonFuncReq])],
   controllers: [SystemController],
-  providers: [SystemService]
+  providers: [SystemService],
 })
-export class SystemModule {
-}
+export class SystemModule {}

@@ -1,22 +1,26 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Service } from "./service.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Service } from './service.entity';
 
 @Entity()
 export class Comunication {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number;
+  @Column()
+  label: string;
 
-    @Column()
-    label: string;
+  @Column()
+  sync: boolean;
 
-    @Column()
-    sync: boolean;
+  @ManyToOne(
+    () => Service,
+    service => service.service_emitter,
+  )
+  service_emitter: Service;
 
-    @ManyToOne(() => Service, service => service.service_emitter)
-    service_emitter: Service;
-
-    @ManyToOne(() => Service, service => service.service_receiver)
-    service_receiver: Service;
-
+  @ManyToOne(
+    () => Service,
+    service => service.service_receiver,
+  )
+  service_receiver: Service;
 }

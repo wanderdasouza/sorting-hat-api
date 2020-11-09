@@ -1,28 +1,44 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Database } from "./database.entity";
-import { Service } from "./service.entity";
-import { System } from "./system.entity";
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Database } from './database.entity';
+import { Service } from './service.entity';
+import { System } from './system.entity';
 
 @Entity()
-export class ModuleEntity{
+export class ModuleEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number;
+  @Column()
+  name: string;
 
-    @Column()
-    name: string;
+  @Column()
+  responsibility: string;
 
-    @Column()
-    responsibility: string;
-    
-    @ManyToOne(() => System, system => system.modules)
-    system: System;
+  @ManyToOne(
+    () => System,
+    system => system.modules,
+  )
+  system: System;
 
-    @ManyToMany(() => Database)
-    @JoinTable()
-    databases: Database[];
+  @ManyToMany(() => Database)
+  @JoinTable()
+  databases: Database[];
 
-    @OneToMany(() => Service, service => service.module)
-    services: Service[];
+  @ManyToMany(() => ModuleEntity)
+  @JoinTable()
+  moduleInteracting: ModuleEntity[];
 
+  @OneToMany(
+    () => Service,
+    service => service.module,
+  )
+  services: Service[];
 }

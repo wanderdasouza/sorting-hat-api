@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Comunication } from 'src/entities/comunication.entity';
 import { ModuleEntity } from 'src/entities/module.entity';
+import { Service } from 'src/entities/service.entity';
 import { System } from 'src/entities/system.entity';
 import { Repository } from 'typeorm';
 import { ModuleDto } from './module.dto';
@@ -12,10 +14,16 @@ export class ModuleService {
     private moduleRepository: Repository<ModuleEntity>,
     @InjectRepository(System)
     private systemRepository: Repository<System>,
+    @InjectRepository(Service)
+    private serviceRepository: Repository<Service>,
+    @InjectRepository(Comunication)
+    private communicationRepository: Repository<Comunication>,
   ) {}
 
-  async findAll(systemId: number): Promise<ModuleEntity[]> {
-    return await this.moduleRepository.find({ system: { id: systemId } });
+  async findAll(systemId: number) {
+    return await this.moduleRepository.find({
+      system: { id: systemId },
+    });
   }
 
   async create(moduleDto: ModuleDto, systemId: number): Promise<ModuleEntity> {
@@ -25,6 +33,13 @@ export class ModuleService {
     module.responsibility = moduleDto.responsibility;
     module.system = system;
     module.databases = [];
+    //module.moduleInteracting = [];
     return this.moduleRepository.save(module);
+  }
+
+  async findCommunications() {
+    return await this.moduleRepository.find({
+      relations: ['moduleInteracting'],
+    });
   }
 }

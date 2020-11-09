@@ -5,17 +5,20 @@ import { ModuleService } from './module.service';
 
 @Controller('sistema/:sid/modulos')
 export class ModuleController {
+  constructor(private moduleService: ModuleService) {}
 
-    constructor(private moduleService: ModuleService){}
+  @Get()
+  async findAll(@Param('sid') systemId: number): Promise<ModuleEntity[]> {
+    return await this.moduleService.findAll(systemId);
+  }
 
-    @Get()
-    async findAll(@Param("sid") systemId: number): Promise<ModuleEntity[]> {
-        return await this.moduleService.findAll(systemId);
-    }
+  @Post()
+  async create(@Body() moduleDto: ModuleDto, @Param('sid') systemId: number) {
+    return this.moduleService.create(moduleDto, systemId);
+  }
 
-    @Post()
-    async create(@Body() moduleDto: ModuleDto, 
-           @Param("sid") systemId: number) {
-        return this.moduleService.create(moduleDto, systemId);
-    }
+  @Get('/:mid/communications')
+  async findCommunications(@Param('mid') moduleId: number) {
+    return this.moduleService.findCommunications();
+  }
 }

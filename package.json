@@ -25,6 +25,7 @@
     "@nestjs/core": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
     "@nestjs/typeorm": "^7.1.4",
+    "force-graph": "^1.35.1",
     "mysql": "^2.18.1",
     "pg": "^8.4.1",
     "reflect-metadata": "^0.1.13",

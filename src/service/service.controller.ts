@@ -8,7 +8,7 @@ import { ExternalResourceDto } from './externalResource.dto';
 import { ExternalResource } from 'src/entities/external_resource.entity';
 import { CommunicationDto } from './communication.dto';
 
-@Controller('modulos/:mid/servicos')
+@Controller('modules/:mid/services')
 export class ServiceController {
   constructor(private serviceService: ServiceService) {}
 

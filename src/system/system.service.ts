@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { SystemDto } from './system.dto';
 import { System } from '../entities/system.entity';
 import { NonFuncReq } from 'src/entities/nonFuncReq.entity';
+import { NonFuncReqDto } from './non-func-req.dto';
 
 @Injectable()
 export class SystemService {
@@ -16,7 +17,6 @@ export class SystemService {
 
   async findAll(): Promise<System[]> {
     const a = await this.systemRepository.find({ relations: ['nonFuncReqs'] });
-    console.log(a);
     return this.systemRepository.find({ relations: ['nonFuncReqs'] });
   }
 
@@ -25,12 +25,23 @@ export class SystemService {
       systemDto.reqIds,
     );
 
-    console.log(nonfuncReqs);
     const system = new System();
     system.name = systemDto.name;
     system.description = systemDto.description;
     system.nonFuncReqs = nonfuncReqs;
 
     return this.systemRepository.save(system);
+  }
+
+  async findAllNonFuncReqs() {
+    return this.nonFuncReqRepository.find();
+  }
+
+  async createNonFuncReq(nonFuncreqDto: NonFuncReqDto) {
+    const nonFuncReq = new NonFuncReq();
+
+    nonFuncReq.nameReq = nonFuncreqDto.req;
+
+    return this.nonFuncReqRepository.save(nonFuncReq);
   }
 }

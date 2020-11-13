@@ -3,7 +3,7 @@ import { ModuleEntity } from 'src/entities/module.entity';
 import { ModuleDto } from './module.dto';
 import { ModuleService } from './module.service';
 
-@Controller('sistema/:sid/modulos')
+@Controller('systems/:sid/modules')
 export class ModuleController {
   constructor(private moduleService: ModuleService) {}
 
@@ -17,8 +17,8 @@ export class ModuleController {
     return this.moduleService.create(moduleDto, systemId);
   }
 
-  @Get('/:mid/communications')
-  async findCommunications(@Param('mid') moduleId: number) {
+  @Get('/communications')
+  async findCommunications() {
     return this.moduleService.findCommunications();
   }
 }

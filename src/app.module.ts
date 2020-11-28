@@ -4,15 +4,36 @@ import { SystemModule } from './system/system.module';
 import { ModuleModule } from './module/module.module';
 import { ServiceModule } from './service/service.module';
 import { DatabaseModule } from './database/database.module';
-import { NonFuncReqModule } from './non-func-req/non-func-req.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(),
+    TypeOrmModule.forRoot({
+      type: "postgres",
+      host: "3306",
+      username: "root",
+      password: "root",
+      database: "test",
+      autoLoadEntities: true,
+      synchronize: true,
+      entities: ["dist/**/**.entity{.ts,.js}"]
+    }),
     SystemModule,
     ModuleModule,
     ServiceModule,
     DatabaseModule,
-    NonFuncReqModule],
+  ],
 })
 export class AppModule {}
+
+
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 3306,
+    "username": "root",
+    "password": "root",
+    "database": "test",
+    "autoLoadEntities": true,
+    "synchronize": true,
+    "entities": ["dist/**/**.entity{.ts,.js}"]
+  }

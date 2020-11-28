@@ -9,7 +9,7 @@ import { OperationserviceDto } from './operationService.dto';
 import { ServiceDto } from './service.dto';
 import { ExternalResourceDto } from './externalResource.dto';
 import { CommunicationDto } from './communication.dto';
-import { Comunication } from 'src/entities/comunication.entity';
+import { Communication } from 'src/entities/communication.entity';
 
 @Injectable()
 export class ServiceService {
@@ -22,8 +22,8 @@ export class ServiceService {
     private operationsServiceRepository: Repository<OperationService>,
     @InjectRepository(ExternalResource)
     private externalResourceRepository: Repository<ExternalResource>,
-    @InjectRepository(Comunication)
-    private communicationRepository: Repository<Comunication>,
+    @InjectRepository(Communication)
+    private communicationRepository: Repository<Communication>,
   ) {}
 
   async findAll(moduleId: number): Promise<Service[]> {
@@ -78,7 +78,8 @@ export class ServiceService {
 
   async findCommunications(serviceId: number) {
     return this.communicationRepository.find({
-      service_emitter: { id: serviceId },
+      relations: ['service_receiver'],
+      where: { service_emitter: { id: serviceId } },
     });
   }
 
@@ -110,7 +111,7 @@ export class ServiceService {
     }
     await this.moduleRepository.save(moduleEmitter);
 
-    const communication = new Comunication();
+    const communication = new Communication();
     communication.label = communicationDto.label;
     communication.sync = communicationDto.sync;
     communication.service_emitter = emitter;

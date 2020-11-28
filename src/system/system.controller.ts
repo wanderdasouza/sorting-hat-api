@@ -4,7 +4,7 @@ import { SystemService } from './system.service';
 import { SystemDto } from './system.dto';
 import { NonFuncReqDto } from './non-func-req.dto';
 
-@Controller('sistema')
+@Controller('systems')
 export class SystemController {
   constructor(private systemService: SystemService) {}
 

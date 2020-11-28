@@ -4,9 +4,8 @@ import {
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
-  Tree,
 } from 'typeorm';
-import { Comunication } from './comunication.entity';
+import { Communication } from './communication.entity';
 import { ExternalResource } from './external_resource.entity';
 import { ModuleEntity } from './module.entity';
 import { OperationService } from './operation_service.entity';
@@ -40,7 +39,6 @@ export class Service {
     resource => resource.service,
   )
   externalResources: ExternalResource[];
-
   @OneToMany(
     () => Store_At,
     store_at => store_at.service,
@@ -48,14 +46,14 @@ export class Service {
   store_at: Store_At[];
 
   @OneToMany(
-    () => Comunication,
-    comunication => comunication.service_emitter,
+    () => Communication,
+    communication => communication.service_emitter,
   )
   service_emitter: Service;
 
   @OneToMany(
-    () => Comunication,
-    comunication => comunication.service_receiver,
+    () => Communication,
+    communication => communication.service_receiver,
   )
   service_receiver: Service;
 }

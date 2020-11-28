@@ -16,7 +16,6 @@ export class SystemService {
   ) {}
 
   async findAll(): Promise<System[]> {
-    const a = await this.systemRepository.find({ relations: ['nonFuncReqs'] });
     return this.systemRepository.find({ relations: ['nonFuncReqs'] });
   }
 

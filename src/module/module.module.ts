@@ -5,11 +5,11 @@ import { ModuleService } from './module.service';
 import { ModuleEntity } from '../entities/module.entity';
 import { System } from 'src/entities/system.entity';
 import { Service } from 'src/entities/service.entity';
-import { Comunication } from 'src/entities/comunication.entity';
+import { Communication } from 'src/entities/communication.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ModuleEntity, System, Service, Comunication]),
+    TypeOrmModule.forFeature([ModuleEntity, System, Service, Communication]),
   ],
   controllers: [ModuleController],
   providers: [ModuleService],

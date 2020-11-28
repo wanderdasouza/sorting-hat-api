@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Comunication } from 'src/entities/comunication.entity';
+import { Communication } from 'src/entities/communication.entity';
 import { ModuleEntity } from 'src/entities/module.entity';
 import { Service } from 'src/entities/service.entity';
 import { System } from 'src/entities/system.entity';
@@ -16,8 +16,8 @@ export class ModuleService {
     private systemRepository: Repository<System>,
     @InjectRepository(Service)
     private serviceRepository: Repository<Service>,
-    @InjectRepository(Comunication)
-    private communicationRepository: Repository<Comunication>,
+    @InjectRepository(Communication)
+    private communicationRepository: Repository<Communication>,
   ) {}
 
   async findAll(systemId: number) {

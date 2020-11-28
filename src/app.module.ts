@@ -4,9 +4,12 @@ import { SystemModule } from './system/system.module';
 import { ModuleModule } from './module/module.module';
 import { ServiceModule } from './service/service.module';
 import { DatabaseModule } from './database/database.module';
+import { ConfigModule } from '@nestjs/config';
 
+console.log(process.env.DATABASE_HOST);
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DATABASE_HOST,
@@ -16,6 +19,9 @@ import { DatabaseModule } from './database/database.module';
       database: process.env.DATABASE_DB,
       autoLoadEntities: true,
       synchronize: true,
+      extra: {
+        ssl: true,
+      },
       entities: ['dist/**/**.entity{.ts,.js}'],
     }),
     SystemModule,

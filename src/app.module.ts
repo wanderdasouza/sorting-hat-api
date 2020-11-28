@@ -8,14 +8,14 @@ import { DatabaseModule } from './database/database.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: "postgres",
-      host: "3306",
-      username: "root",
-      password: "root",
-      database: "test",
+      type: 'postgres',
+      host: '3306',
+      username: 'root',
+      password: 'root',
+      database: 'test',
       autoLoadEntities: true,
       synchronize: true,
-      entities: ["dist/**/**.entity{.ts,.js}"]
+      entities: ['dist/**/**.entity{.ts,.js}'],
     }),
     SystemModule,
     ModuleModule,
@@ -24,16 +24,3 @@ import { DatabaseModule } from './database/database.module';
   ],
 })
 export class AppModule {}
-
-
-{
-    "type": "postgres",
-    "host": "localhost",
-    "port": 3306,
-    "username": "root",
-    "password": "root",
-    "database": "test",
-    "autoLoadEntities": true,
-    "synchronize": true,
-    "entities": ["dist/**/**.entity{.ts,.js}"]
-  }

@@ -19,9 +19,6 @@ console.log(process.env.DATABASE_HOST);
       database: process.env.DATABASE_DB,
       autoLoadEntities: true,
       synchronize: true,
-      extra: {
-        ssl: true,
-      },
       entities: ['dist/**/**.entity{.ts,.js}'],
     }),
     SystemModule,

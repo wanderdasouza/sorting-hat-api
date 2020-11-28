@@ -9,10 +9,11 @@ import { DatabaseModule } from './database/database.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: '3306',
-      username: 'root',
-      password: 'root',
-      database: 'test',
+      host: process.env.DATABASE_HOST,
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      port: parseInt(process.env.DATABASE_PORT),
+      database: process.env.DATABASE_DB,
       autoLoadEntities: true,
       synchronize: true,
       entities: ['dist/**/**.entity{.ts,.js}'],
